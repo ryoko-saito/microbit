@@ -19,19 +19,37 @@ def measureDistance():
     return int(t * v / 20000)
 
 def openDoor():
-    pin2.write_analog(76)
-    
+    a = []
+    for i in range(73, 40, -1):
+        a.append(i)
+
+    for i in a:
+        pin2.write_analog(i)
+        sleep(20)
+    sleep(1000)
+    return True
+
 def closeDoor():
-    pin2.write_analog(26)
+    pin2.write_analog(73)
+    sleep(1000)
+    return False
 
 
-if __name__ == "__main__":
-    pin0.write_digital(0)
+timer = 0
+isOpen = False
+pin2.write_analog(73)
 
-    while True:    
+while True:
+    if isOpen == False:
         if measureDistance() <= 20:
-            openDoor()
-        else:
-            closeDoor()
-
-        utime.sleep(1)
+            isOpen = openDoor()
+            timer = 3
+    elif isOpen == True:
+        if timer > 0 and measureDistance() <= 20:
+            timer = 3
+        elif timer == 0:
+            isOpen = closeDoor()
+    
+    sleep(1000)
+    if timer > 0:
+        timer -= 1
