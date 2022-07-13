@@ -34,7 +34,8 @@ def closeDoor():
     sleep(1000)
     return False
 
-
+# ドアを開けておく秒数
+OPEN_PERIOD = 3
 timer = 0
 isOpen = False
 pin2.write_analog(73)
@@ -43,10 +44,10 @@ while True:
     if isOpen == False:
         if measureDistance() <= 20:
             isOpen = openDoor()
-            timer = 3
+            timer = OPEN_PERIOD
     elif isOpen == True:
         if timer > 0 and measureDistance() <= 20:
-            timer = 3
+            timer = OPEN_PERIOD
         elif timer == 0:
             isOpen = closeDoor()
     
