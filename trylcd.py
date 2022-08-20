@@ -84,7 +84,7 @@ class LCD1602():
 l = LCD1602()
 l.puts('Brightness')
 
-levellist = [0,0,0,0,0]
+levellist = [123,123,123,123,123]
 while True:
     for i in range(4):
         levellist[i] = levellist[i+1]
