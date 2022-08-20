@@ -1,7 +1,11 @@
 from microbit import *
 import math
 
-LCD_I2C_ADDR=39
+##########################################################################
+# https://github.com/shaoziyang/microbit-lib/tree/master/lcd/I2C_LCD1602 #
+##########################################################################
+
+LCD_I2C_ADDR=0x27
 
 class LCD1602():
     def __init__(self):
